@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>微光植境 Leaf & Light | 智慧微氣候與永續植感生活</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f2f7f4',
+                            100: '#e1ede6',
+                            200: '#c4dcce',
+                            300: '#9cc2ad',
+                            400: '#70a288',
+                            500: '#4e866a',
+                            600: '#3c6b53',
+                            700: '#325644',
+                            800: '#2b4639',
+                            900: '#1e332a',
+                            950: '#0e1d17',
+                        },
+                        amberGlow: {
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif TC"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0e1d17;
+            color: #e1ede6;
+        }
+        .font-serif-tc {
+            font-family: 'Noto Serif TC', serif;
+        }
+
+        /* Glassmorphism Panels */
+        .glass-panel {
+            background: rgba(30, 51, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(156, 194, 173, 0.18);
+        }
+        .glass-card {
+            background: rgba(43, 70, 57, 0.45);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(156, 194, 173, 0.15);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            border-color: rgba(245, 158, 11, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 16px 35px -10px rgba(14, 29, 23, 0.6);
+        }
+
+        /* Text Animation 1: Shimmering Gradient Flow */
+        @keyframes textGradientShimmer {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .text-anim-shine {
+            background: linear-gradient(90deg, #9cc2ad, #fbbf24, #ffffff, #70a288, #fbbf24);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textGradientShimmer 6s ease infinite;
+        }
+
+        /* Text Animation 2: Soft Floating Motion */
+        @keyframes floatMotion {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-7px); }
+        }
+        .text-anim-float {
+            display: inline-block;
+            animation: floatMotion 4.5s ease-in-out infinite;
+        }
+
+        /* Text Animation 3: Pulsing Glow Text Effect */
+        @keyframes textPulseGlow {
+            0%, 100% { text-shadow: 0 0 10px rgba(245, 158, 11, 0.2); opacity: 0.9; }
+            50% { text-shadow: 0 0 25px rgba(245, 158, 11, 0.8), 0 0 35px rgba(112, 162, 136, 0.5); opacity: 1; }
+        }
+        .text-anim-pulse {
+            animation: textPulseGlow 3s ease-in-out infinite;
+        }
+
+        /* Interactive Button Hover Animations */
+        .btn-interactive-primary {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 18px rgba(245, 158, 11, 0.25);
+        }
+        /* Shimmer sweep effect on primary buttons */
+        .btn-interactive-primary::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                60deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.5) 50%,
+                transparent 70%
+            );
+            transform: rotate(25deg) translateX(-100%);
+            transition: transform 0.8s ease;
+        }
+        .btn-interactive-primary:hover::before {
+            transform: rotate(25deg) translateX(100%);
+        }
+        .btn-interactive-primary:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.5), 0 0 20px rgba(245, 158, 11, 0.3);
+        }
+        .btn-interactive-primary:active {
+            transform: translateY(1px) scale(0.96);
+            box-shadow: 0 2px 10px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-interactive-secondary {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        /* Subtly illuminated hover aura */
+        .btn-interactive-secondary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(circle at center, rgba(245, 158, 11, 0.25) 0%, transparent 75%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
+        }
+        .btn-interactive-secondary:hover::after {
+            opacity: 1;
+        }
+        .btn-interactive-secondary:hover {
+            border-color: rgba(245, 158, 11, 0.7);
+            background-color: rgba(43, 70, 57, 0.85);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px rgba(156, 194, 173, 0.25);
+        }
+        .btn-interactive-secondary:active {
+            transform: translateY(1px) scale(0.97);
+        }
+
+        /* Dynamic Click Ripple Effect */
+        .ripple-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.45);
+            transform: scale(0);
+            animation: rippleAnim 0.65s cubic-bezier(0.1, 0.8, 0.3, 1);
+            pointer-events: none;
+        }
+        @keyframes rippleAnim {
+            to {
+                transform: scale(3.5);
+                opacity: 0;
+            }
+        }
+
+        /* Active Tab & Filter Pulsing Glow Border */
+        .active-tab-glow {
+            position: relative;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+            animation: borderPulse 3s ease-in-out infinite;
+        }
+        @keyframes borderPulse {
+            0%, 100% { border-color: rgba(245, 158, 11, 0.8); }
+            50% { border-color: rgba(156, 194, 173, 0.9); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0e1d17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2b4639;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4e866a;
+        }
+    </style>
+</head>
+<body class="selection:bg-brand-500 selection:text-white min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass-panel" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-brand-600/60 border border-brand-400/40 flex items-center justify-center text-brand-300 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                    <i class="fa-solid fa-leaf text-lg text-brand-300 group-hover:text-amberGlow-400 transition-colors"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-serif-tc text-xl font-bold tracking-wider text-brand-50 group-hover:text-amberGlow-400 transition-colors">微光植境</span>
+                    <span class="text-[10px] tracking-widest text-brand-300 uppercase font-mono">Leaf & Light</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-brand-200">
+                <a href="#assignment-summary" class="hover:text-amberGlow-400 transition-colors">作業說明對照</a>
+                <a href="#about" class="hover:text-amberGlow-400 transition-colors">品牌故事</a>
+                <a href="#matrix" class="hover:text-amberGlow-400 transition-colors">4W 矩陣</a>
+                <a href="#products" class="hover:text-amberGlow-400 transition-colors">永續選品</a>
+                <a href="#configurator" class="hover:text-amberGlow-400 transition-colors">生態缸訂製</a>
+                <a href="#ai-assistant" class="hover:text-amberGlow-300 transition-colors flex items-center gap-1.5 text-amberGlow-400 font-semibold">
+                    <i class="fa-solid fa-sparkles text-xs animate-spin"></i> AI 植感顧問
+                </a>
+            </nav>
+
+            <!-- Header Right Actions -->
+            <div class="flex items-center gap-4">
+                <button id="openCartBtn" class="btn-interactive-secondary relative p-2.5 rounded-full bg-brand-900/80 text-brand-200 hover:text-white border border-brand-700/50">
+                    <i class="fa-solid fa-bag-shopping text-base"></i>
+                    <span id="cartBadge" class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-amberGlow-500 text-brand-950 font-bold text-[11px] flex items-center justify-center hidden">0</span>
+                </button>
+                <button id="mobileMenuBtn" class="md:hidden p-2 text-brand-200 hover:text-white">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden glass-panel border-t border-brand-800 px-6 py-6 flex flex-col gap-4 text-brand-200 font-medium">
+            <a href="#assignment-summary" class="mobile-link py-2 hover:text-amberGlow-400">作業說明對照</a>
+            <a href="#about" class="mobile-link py-2 hover:text-amberGlow-400">品牌故事</a>
+            <a href="#matrix" class="mobile-link py-2 hover:text-amberGlow-400">4W 矩陣</a>
+            <a href="#products" class="mobile-link py-2 hover:text-amberGlow-400">永續選品</a>
+            <a href="#configurator" class="mobile-link py-2 hover:text-amberGlow-400">生態缸訂製</a>
+            <a href="#ai-assistant" class="mobile-link py-2 text-amberGlow-400 font-semibold"><i class="fa-solid fa-sparkles mr-2"></i>AI 植感顧問</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen pt-28 pb-16 flex items-center justify-center overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-brand-500/15 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-[450px] h-[450px] bg-amberGlow-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Hero Left Content -->
+            <div class="lg:col-span-7 text-center lg:text-left space-y-8">
+                <!-- Text Effect Demo Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-800/80 border border-brand-600/40 text-brand-300 text-xs font-medium tracking-wide">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amberGlow-400 animate-ping"></span>
+                    <span class="text-anim-pulse font-bold text-amberGlow-300">智慧微氣候與極簡植物美學品牌</span>
+                </div>
+
+                <!-- Text Animation 1 Showcase in Main Heading -->
+                <h1 class="font-serif-tc text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">
+                    在水泥森林裡，<br/>
+                    擁有一片<span class="text-anim-shine">會呼吸的永續微光</span>。
+                </h1>
+
+                <!-- Text Animation 2 Showcase -->
+                <p class="text-brand-200/90 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light">
+                    「微光植境 Leaf & Light」將微型氣候感知技術與台灣在地手工陶藝融合，打造不需要繁複照顧、自給自足的桌上綠洲。
+                    <span class="text-anim-float text-amberGlow-400 font-semibold mt-1">點亮一盞微光，讓自然的呼吸撫平生活焦慮。</span>
+                </p>
+
+                <!-- Core One-Sentence Brand Statement -->
+                <div class="p-5 rounded-2xl glass-panel border border-amberGlow-500/30 text-xs sm:text-sm text-brand-100/90 leading-relaxed max-w-2xl shadow-lg">
+                    <div class="text-amberGlow-400 font-bold mb-1.5 flex items-center gap-2">
+                        <i class="fa-solid fa-quote-left"></i>
+                        <span>品牌核心宣言：</span>
+                    </div>
+                    <p class="font-serif-tc text-sm sm:text-base text-brand-50">
+                        我們是一個<strong class="text-amberGlow-300 underline underline-offset-4">專注於綠意生活與智慧植物科技的永續美學</strong>品牌，透過<strong class="text-amberGlow-300 underline underline-offset-4">將極簡科技與自然微氣候生態相結合</strong>，讓<strong class="text-amberGlow-300 underline underline-offset-4">忙碌的都市人在日常生活空間中隨時感受自然的靜謐與心靈療癒</strong>。
+                    </p>
+                </div>
+
+                <!-- Hero Interactive Action Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                    <a href="#products" class="btn-interactive-primary group w-full sm:w-auto px-8 py-3.5 rounded-xl bg-amberGlow-500 hover:bg-amberGlow-400 text-brand-950 font-bold text-sm tracking-wide flex items-center justify-center gap-2">
+                        <span>探索永續選品</span>
+                        <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1.5"></i>
+                    </a>
+                    <a href="#ai-assistant" class="btn-interactive-secondary w-full sm:w-auto px-8 py-3.5 rounded-xl glass-card text-brand-100 hover:text-white text-sm font-semibold flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-sparkles text-amberGlow-400 animate-pulse"></i>
+                        <span>諮詢 AI 植感顧問</span>
+                    </a>
+                </div>
+
+                <!-- Trust Metrics -->
+                <div class="pt-6 border-t border-brand-800/80 grid grid-cols-3 gap-4 text-center lg:text-left">
+                    <div>
+                        <div class="font-serif-tc text-2xl font-bold text-white text-anim-pulse">99.4%</div>
+                        <div class="text-xs text-brand-300/80 mt-1">自然生態存活率</div>
+                    </div>
+                    <div>
+                        <div class="font-serif-tc text-2xl font-bold text-white">100%</div>
+                        <div class="text-xs text-brand-300/80 mt-1">可回收手工陶皿</div>
+                    </div>
+                    <div>
+                        <div class="font-serif-tc text-2xl font-bold text-white">12,000+</div>
+                        <div class="text-xs text-brand-300/80 mt-1">都市桌案綠洲夥伴</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Visual Feature Card -->
+            <div class="lg:col-span-5 relative flex justify-center">
+                <div class="relative w-full max-w-md aspect-square rounded-3xl overflow-hidden glass-panel border border-brand-500/30 p-4 shadow-2xl flex flex-col justify-between group">
+                    <div class="relative w-full h-full rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1545241047-6083a3684587?auto=format&fit=crop&w=1000&q=80" alt="微光植境生態缸展示" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-950 via-transparent to-transparent opacity-85"></div>
+                        
+                        <div class="absolute top-4 left-4 glass-card px-3 py-1.5 rounded-lg flex items-center gap-2 text-xs font-mono text-brand-200">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span>微氣候濕度: 82% | 溫控: 23.5°C</span>
+                        </div>
+
+                        <div class="absolute bottom-4 left-4 right-4 text-left">
+                            <span class="text-[11px] font-bold uppercase tracking-widest text-amberGlow-400">旗艦系列作品</span>
+                            <h3 class="font-serif-tc text-xl font-bold text-white">「山嵐」微氣候智慧苔蘚缸</h3>
+                            <p class="text-xs text-brand-200/80 mt-1">自動微循環水霧 x 低耗能日照模仿微光</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Phase 01 & 02 Homework Assignment Matrix View -->
+    <section id="assignment-summary" class="py-20 relative border-t border-brand-800/60 bg-brand-950/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+                <span class="text-amberGlow-400 text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-clipboard-check"></i> Project Brief Alignment (作業規格核對)
+                </span>
+                <h2 class="font-serif-tc text-3xl sm:text-4xl font-bold text-white">品牌基石與策略簡報 (Phase 01 & 02)</h2>
+                <p class="text-brand-200/80 text-sm">此區呈現作業要求之品牌五大要件與 4W 策略回答</p>
+            </div>
+
+            <!-- Page 3 Requirements Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <!-- Brand Name -->
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-amberGlow-500 space-y-2">
+                    <div class="flex items-center gap-3 text-amberGlow-400">
+                        <i class="fa-solid fa-id-card text-xl"></i>
+                        <h3 class="font-serif-tc font-bold text-white text-lg">1. 品牌名稱</h3>
+                    </div>
+                    <p class="text-sm text-brand-100 font-semibold">微光植境 Leaf & Light</p>
+                </div>
+
+                <!-- Brand Concept -->
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-brand-400 space-y-2">
+                    <div class="flex items-center gap-3 text-brand-300">
+                        <i class="fa-solid fa-lightbulb text-xl"></i>
+                        <h3 class="font-serif-tc font-bold text-white text-lg">2. 品牌概念</h3>
+                    </div>
+                    <p class="text-xs text-brand-200/90 leading-relaxed">
+                        將自然微氣候生態與極簡智慧科技完美融合，為忙碌的水泥城市生活注入靜謐、永續且能自我循環的綠色呼吸空間。
+                    </p>
+                </div>
+
+                <!-- Brand Story -->
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-emerald-400 space-y-2">
+                    <div class="flex items-center gap-3 text-emerald-300">
+                        <i class="fa-solid fa-book-open text-xl"></i>
+                        <h3 class="font-serif-tc font-bold text-white text-lg">3. 品牌故事</h3>
+                    </div>
+                    <p class="text-xs text-brand-200/90 leading-relaxed">
+                        創辦人曾為高壓工程師，在無窗辦公室中發現一株苔蘚能撫平焦慮。為了讓城市人不再因植物枯萎而內疚，「微光植境」應運而生，把森林的一角溫柔帶入生活。
+                    </p>
+                </div>
+
+                <!-- Brand Values -->
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-amberGlow-400 space-y-2">
+                    <div class="flex items-center gap-3 text-amberGlow-300">
+                        <i class="fa-solid fa-gem text-xl"></i>
+                        <h3 class="font-serif-tc font-bold text-white text-lg">4. 品牌價值</h3>
+                    </div>
+                    <ul class="text-xs text-brand-200/90 space-y-1 list-disc list-inside">
+                        <li><strong>永續共生</strong>：100% 可回收陶土</li>
+                        <li><strong>心靈療癒</strong>：五感沉靜沉浸</li>
+                        <li><strong>極簡美學</strong>：現代極簡線條</li>
+                        <li><strong>智慧創新</strong>：微氣候自動感應</li>
+                    </ul>
+                </div>
+
+                <!-- Products -->
+                <div class="glass-card p-6 rounded-2xl border-l-4 border-l-teal-400 space-y-2 md:col-span-2 lg:col-span-2">
+                    <div class="flex items-center gap-3 text-teal-300">
+                        <i class="fa-solid fa-box-open text-xl"></i>
+                        <h3 class="font-serif-tc font-bold text-white text-lg">5. 核心產品與服務</h3>
+                    </div>
+                    <p class="text-xs text-brand-200/90 leading-relaxed">
+                        智慧微氣候生態缸 (NT$ 2,680起)、台灣原生態植感精油與擴香儀 (NT$ 980起)、永續手工陶植栽皿 (NT$ 1,280起) 以及 AI 植栽健康監測諮詢服務。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Story Section -->
+    <section id="about" class="py-24 relative border-t border-brand-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="glass-panel p-8 sm:p-10 rounded-3xl border border-brand-600/30 space-y-6">
+                    <span class="text-amberGlow-400 text-xs font-bold tracking-widest uppercase">Brand Origin</span>
+                    <h2 class="font-serif-tc text-3xl font-bold text-white">品牌起源：水泥森林裡的微光</h2>
+                    <p class="text-brand-200/90 text-sm leading-relaxed font-light">
+                        「微光植境 Leaf & Light」創辦人曾是一名長時間身處無窗辦公室的科技工程師。在高壓與極度焦慮的步調中，他發現桌角一株小小的苔蘚與暖光微風，就能帶來心靈的撫慰。
+                    </p>
+                    <p class="text-brand-200/90 text-sm leading-relaxed font-light">
+                        然而，忙碌的生活常常讓人因無暇照顧而讓植物枯萎。為了讓水泥森林中的都市人不再帶著負咎感，能安心享受自然的撫慰，「微光植境」應運而生——將智慧調節技術融入手工陶藝，把一片長青微生態溫柔帶入每個人的生活。
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="glass-card p-6 rounded-2xl space-y-2 border-t-2 border-t-emerald-400">
+                        <i class="fa-solid fa-recycle text-emerald-400 text-2xl"></i>
+                        <h4 class="font-serif-tc font-bold text-white">永續共生</h4>
+                        <p class="text-xs text-brand-300">使用在地職人回收泥土燒製皿器。</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl space-y-2 border-t-2 border-t-amberGlow-400">
+                        <i class="fa-solid fa-heart-pulse text-amberGlow-400 text-2xl"></i>
+                        <h4 class="font-serif-tc font-bold text-white">心靈療癒</h4>
+                        <p class="text-xs text-brand-300">沉浸式光影與植感沉靜香氛。</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl space-y-2 border-t-2 border-t-teal-400">
+                        <i class="fa-solid fa-compass-drafting text-teal-300 text-2xl"></i>
+                        <h4 class="font-serif-tc font-bold text-white">極簡美學</h4>
+                        <p class="text-xs text-brand-300">俐落線條無縫融入北歐日式風格。</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl space-y-2 border-t-2 border-t-blue-400">
+                        <i class="fa-solid fa-microchip text-blue-300 text-2xl"></i>
+                        <h4 class="font-serif-tc font-bold text-white">智慧創新</h4>
+                        <p class="text-xs text-brand-300">AI 氣候感應與濕度自動調節。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4W Strategy Matrix Section -->
+    <section id="matrix" class="py-20 relative bg-brand-950/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 space-y-3">
+                <span class="text-amberGlow-400 text-xs font-bold tracking-widest uppercase">Phase 02 Strategy</span>
+                <h2 class="font-serif-tc text-3xl font-bold text-white">核心 4W 策略矩陣</h2>
+                <p class="text-brand-200/80 text-sm">點擊下方切換按鈕，查看對應的品牌問題解答</p>
+            </div>
+
+            <!-- Tabs Navigation with Animated Hover Effects -->
+            <div class="flex flex-wrap items-center justify-center gap-3 mb-8" id="matrixTabs">
+                <button data-tab="who" class="matrix-tab-btn btn-interactive-secondary active px-6 py-3 rounded-xl glass-panel text-sm font-bold text-amberGlow-400 border-amberGlow-500/60 flex items-center gap-2">
+                    <i class="fa-solid fa-user-group"></i> 1. Who (為誰存在)
+                </button>
+                <button data-tab="what" class="matrix-tab-btn btn-interactive-secondary px-6 py-3 rounded-xl glass-card text-sm font-medium text-brand-200 hover:text-white flex items-center gap-2">
+                    <i class="fa-solid fa-boxes-packing"></i> 2. What (提供什麼)
+                </button>
+                <button data-tab="why" class="matrix-tab-btn btn-interactive-secondary px-6 py-3 rounded-xl glass-card text-sm font-medium text-brand-200 hover:text-white flex items-center gap-2">
+                    <i class="fa-solid fa-lightbulb"></i> 3. Why (為何需要)
+                </button>
+                <button data-tab="how" class="matrix-tab-btn btn-interactive-secondary px-6 py-3 rounded-xl glass-card text-sm font-medium text-brand-200 hover:text-white flex items-center gap-2">
+                    <i class="fa-solid fa-comments"></i> 4. How (如何溝通)
+                </button>
+            </div>
+
+            <!-- Tab Panels Content -->
+            <div class="glass-panel p-8 sm:p-12 rounded-3xl border border-brand-500/30 min-h-[260px] flex items-center">
+                <!-- Who -->
+                <div id="tab-who" class="matrix-panel flex flex-col md:flex-row items-center gap-8 w-full">
+                    <div class="w-20 h-20 rounded-2xl bg-amberGlow-500/20 text-amberGlow-400 flex items-center justify-center text-3xl shrink-0">
+                        <i class="fa-solid fa-user-astronaut"></i>
+                    </div>
+                    <div class="space-y-3 text-center md:text-left">
+                        <span class="text-xs font-mono text-amberGlow-400 uppercase tracking-widest">Question 01</span>
+                        <h3 class="font-serif-tc text-2xl font-bold text-white">Who 品牌為誰存在？</h3>
+                        <p class="text-brand-100 text-base leading-relaxed font-light">
+                            為追求生活質感、長期身處封閉室內與高壓環境，渴望在繁忙都市步調中獲得自然療癒與心靈靜謐的<strong>高壓職人、生活美學家與數位遊牧族</strong>。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- What -->
+                <div id="tab-what" class="matrix-panel hidden flex flex-col md:flex-row items-center gap-8 w-full">
+                    <div class="w-20 h-20 rounded-2xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center text-3xl shrink-0">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <div class="space-y-3 text-center md:text-left">
+                        <span class="text-xs font-mono text-emerald-400 uppercase tracking-widest">Question 02</span>
+                        <h3 class="font-serif-tc text-2xl font-bold text-white">What 品牌提供什麼產品或服務？</h3>
+                        <p class="text-brand-100 text-base leading-relaxed font-light">
+                            提供結合<strong>智慧微氣候調節技術的景觀生態缸</strong>、台灣原生態植感精油與擴香儀、手工陶藝植器，以及 <strong>AI 智慧植栽健康診斷與養護顧問服務</strong>。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Why -->
+                <div id="tab-why" class="matrix-panel hidden flex flex-col md:flex-row items-center gap-8 w-full">
+                    <div class="w-20 h-20 rounded-2xl bg-teal-500/20 text-teal-300 flex items-center justify-center text-3xl shrink-0">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <div class="space-y-3 text-center md:text-left">
+                        <span class="text-xs font-mono text-teal-400 uppercase tracking-widest">Question 03</span>
+                        <h3 class="font-serif-tc text-2xl font-bold text-white">Why 為什麼需要這個品牌？</h3>
+                        <p class="text-brand-100 text-base leading-relaxed font-light">
+                            現代都市人普遍患有「自然匱乏感（Nature Deficit）」，但傳統植物容易因環境光照不足或忘記澆水而枯萎。我們打破傳統養護門檻，打造能自我循環、低維護負擔的居家微綠洲。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- How -->
+                <div id="tab-how" class="matrix-panel hidden flex flex-col md:flex-row items-center gap-8 w-full">
+                    <div class="w-20 h-20 rounded-2xl bg-blue-500/20 text-blue-300 flex items-center justify-center text-3xl shrink-0">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <div class="space-y-3 text-center md:text-left">
+                        <span class="text-xs font-mono text-blue-400 uppercase tracking-widest">Question 04</span>
+                        <h3 class="font-serif-tc text-2xl font-bold text-white">How 品牌如何與消費者溝通？</h3>
+                        <p class="text-brand-100 text-base leading-relaxed font-light">
+                            透過沉浸式官網互動視覺、24/7 在線的 AI 植感顧問、永續回饋舊缸重塑計畫，以及線下微景觀手作體驗工作坊，建立深度的情感連結。
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainable Products Catalog -->
+    <section id="products" class="py-24 relative border-t border-brand-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div class="space-y-3">
+                    <span class="text-amberGlow-400 text-xs font-bold tracking-widest uppercase">Phase 03 Product Showcase</span>
+                    <h2 class="font-serif-tc text-3xl sm:text-4xl font-bold text-white">永續選品與服務展示</h2>
+                </div>
+
+                <!-- Product Filters with Hover Feedback -->
+                <div class="flex flex-wrap gap-2" id="productFilters">
+                    <button data-filter="all" class="filter-btn btn-interactive-secondary active px-4 py-2 rounded-lg text-xs font-bold bg-amberGlow-500 text-brand-950">全部選品</button>
+                    <button data-filter="terrarium" class="filter-btn btn-interactive-secondary px-4 py-2 rounded-lg text-xs font-medium glass-card text-brand-200">智慧生態缸</button>
+                    <button data-filter="scent" class="filter-btn btn-interactive-secondary px-4 py-2 rounded-lg text-xs font-medium glass-card text-brand-200">原生態香氛</button>
+                    <button data-filter="planter" class="filter-btn btn-interactive-secondary px-4 py-2 rounded-lg text-xs font-medium glass-card text-brand-200">手工陶植器</button>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="productGrid">
+                <!-- Product items rendered dynamically via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Customizer Section -->
+    <section id="configurator" class="py-24 relative border-t border-brand-800/50 bg-brand-950/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-amberGlow-400 text-xs font-bold tracking-widest uppercase"><i class="fa-solid fa-sliders mr-1"></i> Interactive Customizer</span>
+                <h2 class="font-serif-tc text-3xl sm:text-4xl font-bold text-white">客製化您的專屬微氣候生態缸</h2>
+                <p class="text-brand-200/80 text-sm">點擊選擇植栽與底座，即時預覽視覺效果與計算價格</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center glass-panel p-6 sm:p-10 rounded-3xl border border-brand-500/30">
+                <!-- Preview Visual -->
+                <div class="lg:col-span-6 flex flex-col items-center justify-center p-6 glass-card rounded-2xl relative min-h-[360px]">
+                    <div class="absolute top-4 left-4 text-xs font-mono text-brand-300">
+                        [即時視覺預覽]
+                    </div>
+                    <div class="relative w-64 h-64 flex items-center justify-center">
+                        <div id="configPreviewGlow" class="absolute inset-0 rounded-full bg-amberGlow-500/20 blur-2xl transition-all"></div>
+                        <div class="relative text-center space-y-4">
+                            <div class="w-48 h-48 rounded-full border-2 border-brand-400/40 p-4 flex items-center justify-center bg-brand-950/60 shadow-inner">
+                                <i id="configPlantIcon" class="fa-solid fa-seedling text-6xl text-emerald-400 transition-all duration-500 transform hover:scale-110"></i>
+                            </div>
+                            <div id="configBaseLabel" class="px-4 py-1.5 rounded-full bg-brand-800/80 text-xs text-brand-200 border border-brand-600/40 font-mono">
+                                底座：玄武黑岩陶
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Configurator Controls -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-brand-300 mb-3">1. 選擇主景生態植物：</label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button class="config-opt-plant btn-interactive-secondary active p-3 rounded-xl glass-card text-left text-xs border-amberGlow-500/80 text-white" data-plant="moss" data-price="2680" data-name="高山星苔蘚" data-icon="fa-seedling text-emerald-400">
+                                <div class="font-bold">高山星苔蘚</div>
+                                <div class="text-[10px] text-brand-300 mt-1">極低光照要求</div>
+                            </button>
+                            <button class="config-opt-plant btn-interactive-secondary p-3 rounded-xl glass-card text-left text-xs text-brand-200" data-plant="fern" data-price="2980" data-name="微型鐵線蕨" data-icon="fa-plant-wilt text-teal-300">
+                                <div class="font-bold">微型鐵線蕨</div>
+                                <div class="text-[10px] text-brand-300 mt-1">雅緻葉影效果</div>
+                            </button>
+                            <button class="config-opt-plant btn-interactive-secondary p-3 rounded-xl glass-card text-left text-xs text-brand-200" data-plant="succulent" data-price="2480" data-name="沉靜多肉組合" data-icon="fa-stroopwafel text-amberGlow-400">
+                                <div class="font-bold">沉靜多肉組合</div>
+                                <div class="text-[10px] text-brand-300 mt-1">極簡耐旱推薦</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-brand-300 mb-3">2. 選擇陶器底座材質：</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button class="config-opt-base btn-interactive-secondary active p-3 rounded-xl glass-card text-left text-xs border-amberGlow-500/80 text-white" data-base="dark" data-extra="0" data-name="玄武黑岩陶">
+                                <div class="font-bold">玄武黑岩陶</div>
+                                <div class="text-[10px] text-brand-300 mt-1">沉穩沉靜工藝</div>
+                            </button>
+                            <button class="config-opt-base btn-interactive-secondary p-3 rounded-xl glass-card text-left text-xs text-brand-200" data-base="white" data-extra="300" data-name="溫潤白砂陶 (+NT$ 300)">
+                                <div class="font-bold">溫潤白砂陶</div>
+                                <div class="text-[10px] text-brand-300 mt-1">明亮簡潔質感</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-brand-300 mb-3">3. 智慧系統擴充選配：</label>
+                        <label class="flex items-center gap-3 p-3 rounded-xl glass-card cursor-pointer hover:border-amberGlow-500/50 transition-all">
+                            <input type="checkbox" id="sensorAddon" class="rounded bg-brand-900 border-brand-700 text-amberGlow-500 focus:ring-amberGlow-500">
+                            <span class="text-xs text-brand-100">升級 LeafSense AI 藍牙微氣候監測晶片 (+NT$ 800)</span>
+                        </label>
+                    </div>
+
+                    <!-- Price & Add to Cart Action -->
+                    <div class="pt-4 border-t border-brand-800 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-brand-300">總計預估價格</span>
+                            <div class="font-serif-tc text-2xl font-bold text-amberGlow-400" id="configTotalPrice">NT$ 2,680</div>
+                        </div>
+                        <button id="addCustomToCartBtn" class="btn-interactive-primary px-6 py-3.5 rounded-xl bg-amberGlow-500 hover:bg-amberGlow-400 text-brand-950 font-bold text-sm shadow-lg flex items-center gap-2">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>加入購物車</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Botanical Assistant Chatbot Section -->
+    <section id="ai-assistant" class="py-24 relative border-t border-brand-800/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 space-y-3">
+                <span class="text-amberGlow-400 text-xs font-bold tracking-widest uppercase flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-sparkles animate-spin"></i> Gemini AI Interactive Assistant
+                </span>
+                <h2 class="font-serif-tc text-3xl font-bold text-white">微光 AI 植感諮詢顧問</h2>
+                <p class="text-brand-200/80 text-sm">對選品或養護有疑問？隨時發問，由 AI 為您提供沉靜專業建議</p>
+            </div>
+
+            <!-- Chat Window Container -->
+            <div class="glass-panel rounded-3xl border border-brand-500/30 overflow-hidden shadow-2xl flex flex-col h-[520px]">
+                <div class="p-4 bg-brand-900/80 border-b border-brand-800 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-amberGlow-500/20 text-amberGlow-400 flex items-center justify-center text-base">
+                            <i class="fa-solid fa-bot"></i>
+                        </div>
+                        <div>
+                            <div class="text-sm font-bold text-white">微光 AI 植感顧問 (LeafAI)</div>
+                            <div class="text-[10px] text-emerald-400 flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> 在線服務中
+                            </div>
+                        </div>
+                    </div>
+                    <span class="text-[10px] font-mono text-brand-300">Gemini 3 Flash</span>
+                </div>
+
+                <div id="chatMessageList" class="flex-1 p-6 overflow-y-auto space-y-4">
+                    <div class="flex gap-3">
+                        <div class="w-8 h-8 rounded-full bg-amberGlow-500/20 text-amberGlow-400 flex items-center justify-center shrink-0 text-xs">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div class="glass-card p-4 rounded-2xl rounded-tl-none text-xs sm:text-sm text-brand-100 max-w-[85%] leading-relaxed">
+                            您好！我是「微光植境」的智慧植感顧問。請問您的辦公室或居家環境光照如何？或者有感興趣的微氣候生態缸嗎？
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Prompt Suggestions -->
+                <div class="px-4 py-2 bg-brand-950/80 border-t border-brand-800/60 flex items-center gap-2 overflow-x-auto text-[11px] text-brand-300">
+                    <span class="shrink-0 font-bold text-amberGlow-400"><i class="fa-solid fa-lightbulb"></i> 快速詢問：</span>
+                    <button class="quick-prompt-btn btn-interactive-secondary px-2.5 py-1 rounded-full bg-brand-900 border border-brand-700 shrink-0">推薦無窗戶辦公室的植物生態缸？</button>
+                    <button class="quick-prompt-btn btn-interactive-secondary px-2.5 py-1 rounded-full bg-brand-900 border border-brand-700 shrink-0">說明微光植境的一句話品牌核心？</button>
+                    <button class="quick-prompt-btn btn-interactive-secondary px-2.5 py-1 rounded-full bg-brand-900 border border-brand-700 shrink-0">如何維護生態缸內部的濕度？</button>
+                </div>
+
+                <!-- Chat Input Form -->
+                <form id="chatForm" class="p-4 bg-brand-900/90 border-t border-brand-800 flex items-center gap-3">
+                    <input type="text" id="chatInput" placeholder="請輸入您的問題..." required class="flex-1 px-4 py-2.5 rounded-xl bg-brand-950 border border-brand-700 text-xs sm:text-sm text-brand-100 focus:outline-none focus:border-amberGlow-500 transition-colors">
+                    <button type="submit" id="sendMessageBtn" class="btn-interactive-primary px-5 py-2.5 rounded-xl bg-amberGlow-500 text-brand-950 font-bold text-xs sm:text-sm flex items-center gap-1.5">
+                        <span>發送</span>
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Drawer Side Panel -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-all duration-300">
+        <div id="cartBackdrop" class="absolute inset-0 bg-brand-950/80 backdrop-blur-sm"></div>
+        
+        <div class="absolute top-0 right-0 h-full w-full max-w-md bg-brand-900 border-l border-brand-700/50 shadow-2xl pointer-events-auto transform translate-x-full transition-transform duration-300 flex flex-col justify-between" id="cartPanel">
+            <div class="p-6 border-b border-brand-800 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-bag-shopping text-amberGlow-400 text-lg"></i>
+                    <h3 class="font-serif-tc text-lg font-bold text-white">您的永續選品購物車</h3>
+                </div>
+                <button id="closeCartBtn" class="p-2 text-brand-300 hover:text-white">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <div id="cartItemsList" class="flex-1 p-6 overflow-y-auto space-y-4">
+                <!-- Cart items rendered dynamically -->
+            </div>
+
+            <div class="p-6 border-t border-brand-800 bg-brand-950/60 space-y-4">
+                <div class="flex justify-between items-center text-sm">
+                    <span class="text-brand-300">結帳小計</span>
+                    <span class="font-serif-tc text-xl font-bold text-amberGlow-400" id="cartSubtotal">NT$ 0</span>
+                </div>
+                <p class="text-[11px] text-brand-300/80">全店消費滿 NT$ 2,000 即享有台灣免運服務。</p>
+                <button id="checkoutBtn" class="btn-interactive-primary w-full py-3.5 rounded-xl bg-amberGlow-500 text-brand-950 font-bold text-sm text-center">
+                    前往安全結帳
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast Popup -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 glass-panel px-5 py-3 rounded-2xl border-amberGlow-500/50 text-brand-100 text-xs sm:text-sm font-medium shadow-2xl flex items-center gap-3 transform translate-y-10 opacity-0 transition-all pointer-events-none">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <span id="toastMsg">成功加入購物車！</span>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-brand-950 border-t border-brand-800/80 py-16 text-xs text-brand-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-leaf text-amberGlow-400 text-base"></i>
+                        <span class="font-serif-tc text-lg font-bold text-white">微光植境 Leaf & Light</span>
+                    </div>
+                    <p class="text-brand-200/70 leading-relaxed font-light">
+                        將自然微氣候生態與極簡智慧科技融合，為繁忙都市生活注入平靜、永續且能自給自足的綠色呼吸空間。
+                    </p>
+                </div>
+
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="font-bold text-white text-sm">快速導覽</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#assignment-summary" class="hover:text-amberGlow-400">作業說明對照</a></li>
+                        <li><a href="#about" class="hover:text-amberGlow-400">品牌故事起源</a></li>
+                        <li><a href="#matrix" class="hover:text-amberGlow-400">4W 策略矩陣</a></li>
+                        <li><a href="#products" class="hover:text-amberGlow-400">永續選品展示</a></li>
+                        <li><a href="#configurator" class="hover:text-amberGlow-400">生態缸客製化</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-4 space-y-3">
+                    <h4 class="font-bold text-white text-sm">聯繫資訊 (Contact CTA)</h4>
+                    <p><i class="fa-solid fa-envelope mr-2"></i>hello@leaflight-studio.com</p>
+                    <p><i class="fa-solid fa-location-dot mr-2"></i>台中市霧峰區樹仁路植感美學工坊</p>
+                    <p><i class="fa-solid fa-clock mr-2"></i>週一至週五 10:00 - 18:00</p>
+                </div>
+            </div>
+
+            <!-- GitHub Pages Deployment Tip -->
+            <div class="p-4 rounded-xl glass-card border border-brand-700/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-brand-200">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-code-branch text-amberGlow-400 text-sm"></i>
+                    <span><strong>GitHub 作業繳交提示：</strong>下載此 HTML 檔案並改名為 <code class="bg-brand-900 px-1.5 py-0.5 rounded text-amberGlow-300">index.html</code>，上傳至 GitHub 建立 Pages 即可取得連結上傳作業平台。</span>
+                </div>
+            </div>
+
+            <div class="border-t border-brand-900 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center">
+                <p>&copy; 2026 微光植境 Leaf & Light. All Rights Reserved.</p>
+                <p class="text-[10px]">Digital Brand Experience & Interactive Design</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Client JavaScript Logic -->
+    <script>
+        const productsData = [
+            {
+                id: 'p1',
+                category: 'terrarium',
+                title: '「山嵐」微氣候智慧苔蘚缸',
+                price: 2680,
+                desc: '內建自動微風水霧循環，搭配台灣原生星苔蘚，極低照度要求。',
+                image: 'https://images.unsplash.com/photo-1545241047-6083a3684587?auto=format&fit=crop&w=600&q=80',
+                badge: '熱銷第一'
+            },
+            {
+                id: 'p2',
+                category: 'terrarium',
+                title: '「靜夜」微光微型溫室',
+                price: 3280,
+                desc: '結合三段式暖暖微光夜燈，自動調節室內氣流與養份。',
+                image: 'https://images.unsplash.com/photo-1463936575829-25148e1db1b8?auto=format&fit=crop&w=600&q=80',
+                badge: '新品上市'
+            },
+            {
+                id: 'p3',
+                category: 'scent',
+                title: '「台灣檜木與苔蘚」原生態精油',
+                price: 980,
+                desc: '冷萃台灣高山檜木與雪松，沉靜放鬆的深呼吸森林感受。',
+                image: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80',
+                badge: '熱門香氛'
+            },
+            {
+                id: 'p4',
+                category: 'scent',
+                title: '微孔火山岩冷噴擴香儀',
+                price: 1880,
+                desc: '不用水不加熱，以超聲波極細化擴香，還原純淨植物分子。',
+                image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80',
+                badge: '設計大獎'
+            },
+            {
+                id: 'p5',
+                category: 'planter',
+                title: '玄武黑岩手工陶透氣植皿',
+                price: 1280,
+                desc: '由在地陶藝師以回收泥土燒製，粗糙質地給予根部最佳呼吸。',
+                image: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=600&q=80',
+                badge: '職人手作'
+            },
+            {
+                id: 'p6',
+                category: 'planter',
+                title: 'LeafSense 智慧植栽監測儀',
+                price: 1480,
+                desc: '插入土壤即時測量光照、濕度與水份，App 自動提醒養護。',
+                image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?auto=format&fit=crop&w=600&q=80',
+                badge: '智慧選配'
+            }
+        ];
+
+        let cart = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts('all');
+            initMatrixTabs();
+            initConfigurator();
+            initCartUI();
+            initChatbot();
+            initMobileNav();
+            initButtonRipples();
+        });
+
+        // Interactive Button Click Ripple Generator
+        function initButtonRipples() {
+            document.addEventListener('click', (e) => {
+                const btn = e.target.closest('.btn-interactive-primary, .btn-interactive-secondary, .filter-btn, .matrix-tab-btn, button');
+                if (!btn) return;
+
+                const rect = btn.getBoundingClientRect();
+                const circle = document.createElement('span');
+                const diameter = Math.max(rect.width, rect.height);
+                const radius = diameter / 2;
+
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${e.clientX - rect.left - radius}px`;
+                circle.style.top = `${e.clientY - rect.top - radius}px`;
+                circle.classList.add('ripple-circle');
+
+                const existingRipple = btn.querySelector('.ripple-circle');
+                if (existingRipple) {
+                    existingRipple.remove();
+                }
+
+                btn.appendChild(circle);
+            });
+        }
+
+        function renderProducts(filter) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+
+            const filtered = filter === 'all' 
+                ? productsData 
+                : productsData.filter(p => p.category === filter);
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-2xl overflow-hidden flex flex-col justify-between group';
+                card.innerHTML = `
+                    <div class="relative overflow-hidden h-52">
+                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-brand-950/80 border border-brand-600/40 text-amberGlow-400 text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-md">
+                            ${p.badge}
+                        </span>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+                        <div>
+                            <h3 class="font-serif-tc text-lg font-bold text-white group-hover:text-amberGlow-300 transition-colors">${p.title}</h3>
+                            <p class="text-xs text-brand-200/80 mt-1.5 leading-relaxed">${p.desc}</p>
+                        </div>
+                        <div class="pt-3 border-t border-brand-800 flex items-center justify-between">
+                            <span class="font-serif-tc text-lg font-bold text-amberGlow-400">NT$ ${p.price.toLocaleString()}</span>
+                            <button onclick="addToCart('${p.id}')" class="btn-interactive-primary px-3.5 py-2 rounded-xl bg-amberGlow-500 text-brand-950 text-xs font-bold flex items-center gap-1.5">
+                                <i class="fa-solid fa-cart-plus"></i>
+                                <span>加入</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            document.querySelectorAll('#productFilters .filter-btn').forEach(btn => {
+                if (btn.dataset.filter === filter) {
+                    btn.className = 'filter-btn btn-interactive-secondary active active-tab-glow px-4 py-2 rounded-lg text-xs font-bold bg-amberGlow-500 text-brand-950 border border-amberGlow-400';
+                } else {
+                    btn.className = 'filter-btn btn-interactive-secondary px-4 py-2 rounded-lg text-xs font-medium glass-card text-brand-200';
+                }
+            });
+        }
+
+        function initMatrixTabs() {
+            const tabs = document.querySelectorAll('#matrixTabs .matrix-tab-btn');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.dataset.tab;
+                    tabs.forEach(t => t.className = 'matrix-tab-btn btn-interactive-secondary px-6 py-3 rounded-xl glass-card text-sm font-medium text-brand-200 hover:text-white flex items-center gap-2');
+                    tab.className = 'matrix-tab-btn btn-interactive-secondary active active-tab-glow px-6 py-3 rounded-xl glass-panel text-sm font-bold text-amberGlow-400 border border-amberGlow-500/80 flex items-center gap-2';
+
+                    document.querySelectorAll('.matrix-panel').forEach(p => p.classList.add('hidden'));
+                    document.getElementById(`tab-${target}`).classList.remove('hidden');
+                });
+            });
+        }
+
+        function initConfigurator() {
+            let currentPlant = { name: '高山星苔蘚', price: 2680, icon: 'fa-seedling text-emerald-400' };
+            let currentBase = { name: '玄武黑岩陶', extra: 0 };
+            let hasSensor = false;
+
+            function updatePriceAndVisual() {
+                const total = currentPlant.price + currentBase.extra + (hasSensor ? 800 : 0);
+                document.getElementById('configTotalPrice').innerText = `NT$ ${total.toLocaleString()}`;
+                document.getElementById('configBaseLabel').innerText = `底座：${currentBase.name}`;
+                document.getElementById('configPlantIcon').className = `fa-solid ${currentPlant.icon} text-6xl transition-all duration-500 transform hover:scale-110`;
+            }
+
+            document.querySelectorAll('.config-opt-plant').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.config-opt-plant').forEach(b => b.classList.remove('active', 'border-amberGlow-500/80', 'text-white'));
+                    btn.classList.add('active', 'border-amberGlow-500/80', 'text-white');
+                    currentPlant = { name: btn.dataset.name, price: parseInt(btn.dataset.price), icon: btn.dataset.icon };
+                    updatePriceAndVisual();
+                });
+            });
+
+            document.querySelectorAll('.config-opt-base').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.config-opt-base').forEach(b => b.classList.remove('active', 'border-amberGlow-500/80', 'text-white'));
+                    btn.classList.add('active', 'border-amberGlow-500/80', 'text-white');
+                    currentBase = { name: btn.dataset.name, extra: parseInt(btn.dataset.extra) };
+                    updatePriceAndVisual();
+                });
+            });
+
+            document.getElementById('sensorAddon').addEventListener('change', (e) => {
+                hasSensor = e.target.checked;
+                updatePriceAndVisual();
+            });
+
+            document.getElementById('addCustomToCartBtn').addEventListener('click', () => {
+                const total = currentPlant.price + currentBase.extra + (hasSensor ? 800 : 0);
+                cart.push({
+                    id: 'custom-' + Date.now(),
+                    title: `客製化缸：${currentPlant.name} (${currentBase.name})`,
+                    price: total,
+                    qty: 1,
+                    image: 'https://images.unsplash.com/photo-1545241047-6083a3684587?auto=format&fit=crop&w=200&q=80'
+                });
+                updateCartUI();
+                showToast(`已把「${currentPlant.name} 客製缸」加入購物車！`);
+            });
+        }
+
+        function initCartUI() {
+            const drawer = document.getElementById('cartDrawer');
+            const panel = document.getElementById('cartPanel');
+            const openBtn = document.getElementById('openCartBtn');
+            const closeBtn = document.getElementById('closeCartBtn');
+            const backdrop = document.getElementById('cartBackdrop');
+
+            function openCart() {
+                drawer.classList.remove('pointer-events-none', 'opacity-0');
+                panel.classList.remove('translate-x-full');
+            }
+
+            function closeCart() {
+                drawer.classList.add('pointer-events-none', 'opacity-0');
+                panel.classList.add('translate-x-full');
+            }
+
+            openBtn.addEventListener('click', openCart);
+            closeBtn.addEventListener('click', closeCart);
+            backdrop.addEventListener('click', closeCart);
+
+            document.getElementById('checkoutBtn').addEventListener('click', () => {
+                if (cart.length === 0) {
+                    showToast('您的購物車目前是空的喔！');
+                    return;
+                }
+                showToast('感謝訂購！已為您成立預購訂單。');
+                cart = [];
+                updateCartUI();
+                closeCart();
+            });
+        }
+
+        function addToCart(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ id: product.id, title: product.title, price: product.price, image: product.image, qty: 1 });
+            }
+            updateCartUI();
+            showToast(`已成功加入「${product.title}」！`);
+        }
+
+        function updateCartUI() {
+            const cartBadge = document.getElementById('cartBadge');
+            const cartList = document.getElementById('cartItemsList');
+            const cartSubtotal = document.getElementById('cartSubtotal');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+            if (totalItems > 0) {
+                cartBadge.innerText = totalItems;
+                cartBadge.classList.remove('hidden');
+            } else {
+                cartBadge.classList.add('hidden');
+            }
+
+            cartList.innerHTML = '';
+            let subtotal = 0;
+
+            if (cart.length === 0) {
+                cartList.innerHTML = `
+                    <div class="text-center py-12 text-brand-300/60 space-y-3">
+                        <i class="fa-solid fa-basket-shopping text-4xl"></i>
+                        <p class="text-xs">購物車內尚無選品</p>
+                    </div>
+                `;
+            } else {
+                cart.forEach(item => {
+                    subtotal += item.price * item.qty;
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'glass-card p-3 rounded-xl flex items-center gap-3 border-brand-700/50';
+                    itemEl.innerHTML = `
+                        <img src="${item.image}" class="w-14 h-14 rounded-lg object-cover shrink-0" alt="${item.title}">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="text-xs font-bold text-white truncate">${item.title}</h4>
+                            <div class="text-[11px] text-amberGlow-400 font-bold mt-1">NT$ ${item.price.toLocaleString()}</div>
+                        </div>
+                        <div class="flex items-center gap-2 bg-brand-950 px-2 py-1 rounded-lg">
+                            <span class="text-xs text-brand-200">x${item.qty}</span>
+                        </div>
+                    `;
+                    cartList.appendChild(itemEl);
+                });
+            }
+
+            cartSubtotal.innerText = `NT$ ${subtotal.toLocaleString()}`;
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            toast.classList.remove('translate-y-10', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-10', 'opacity-0');
+            }, 3000);
+        }
+
+        function initMobileNav() {
+            const btn = document.getElementById('mobileMenuBtn');
+            const menu = document.getElementById('mobileMenu');
+            btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+            document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => menu.classList.add('hidden')));
+        }
+
+        function initChatbot() {
+            const chatForm = document.getElementById('chatForm');
+            const chatInput = document.getElementById('chatInput');
+            const chatList = document.getElementById('chatMessageList');
+
+            document.querySelectorAll('.quick-prompt-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    chatInput.value = btn.innerText;
+                    chatForm.dispatchEvent(new Event('submit'));
+                });
+            });
+
+            chatForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const userMsg = chatInput.value.trim();
+                if (!userMsg) return;
+
+                appendChatMessage('user', userMsg);
+                chatInput.value = '';
+
+                const loadingId = appendLoadingMessage();
+
+                try {
+                    const apiKey = "";
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+                    const systemInstruction = `你是「微光植境 Leaf & Light」的 AI 植感顧問。
+品牌核心：將智慧微氣候生態與極簡手工陶藝融合，專為忙碌都市人打造不需繁複照顧的桌上綠洲。
+請以溫暖、沉靜、具審美質感且專業的語調回答選品、養護或品牌疑問（約100-180字）。`;
+
+                    const payload = {
+                        contents: [{ parts: [{ text: userMsg }] }],
+                        systemInstruction: { parts: [{ text: systemInstruction }] }
+                    };
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const data = await response.json();
+                    removeMessage(loadingId);
+
+                    if (data.candidates && data.candidates[0]?.content?.parts[0]?.text) {
+                        appendChatMessage('bot', data.candidates[0].content.parts[0].text);
+                    } else {
+                        appendChatMessage('bot', generateFallbackReply(userMsg));
+                    }
+                } catch (err) {
+                    removeMessage(loadingId);
+                    appendChatMessage('bot', generateFallbackReply(userMsg));
+                }
+            });
+
+            function appendChatMessage(sender, text) {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = sender === 'user' ? 'flex justify-end gap-3' : 'flex gap-3';
+                
+                if (sender === 'user') {
+                    msgDiv.innerHTML = `
+                        <div class="bg-amberGlow-500/20 text-amberGlow-300 p-4 rounded-2xl rounded-tr-none text-xs sm:text-sm max-w-[85%] leading-relaxed border border-amberGlow-500/30">
+                            ${escapeHtml(text)}
+                        </div>
+                    `;
+                } else {
+                    msgDiv.innerHTML = `
+                        <div class="w-8 h-8 rounded-full bg-amberGlow-500/20 text-amberGlow-400 flex items-center justify-center shrink-0 text-xs">
+                            <i class="fa-solid fa-leaf"></i>
+                        </div>
+                        <div class="glass-card p-4 rounded-2xl rounded-tl-none text-xs sm:text-sm text-brand-100 max-w-[85%] leading-relaxed">
+                            ${escapeHtml(text)}
+                        </div>
+                    `;
+                }
+                chatList.appendChild(msgDiv);
+                chatList.scrollTop = chatList.scrollHeight;
+            }
+
+            function appendLoadingMessage() {
+                const id = 'loading-' + Date.now();
+                const msgDiv = document.createElement('div');
+                msgDiv.id = id;
+                msgDiv.className = 'flex gap-3';
+                msgDiv.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-amberGlow-500/20 text-amberGlow-400 flex items-center justify-center shrink-0 text-xs">
+                        <i class="fa-solid fa-leaf animate-spin"></i>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl rounded-tl-none text-xs text-brand-300 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-amberGlow-400 animate-ping"></span> 微光 AI 正在思考中...
+                    </div>
+                `;
+                chatList.appendChild(msgDiv);
+                chatList.scrollTop = chatList.scrollHeight;
+                return id;
+            }
+
+            function removeMessage(id) {
+                const el = document.getElementById(id);
+                if (el) el.remove();
+            }
+
+            function escapeHtml(str) {
+                return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            }
+
+            function generateFallbackReply(input) {
+                if (input.includes('無窗') || input.includes('辦公室') || input.includes('推薦')) {
+                    return "針對光照不足的無窗辦公室，我們特別推薦「山嵐微氣候智慧苔蘚缸」。內建擬自然日照微光與自動水霧系統，星苔蘚只需極微弱光源即可進行光合作用。";
+                } else if (input.includes('一句話') || input.includes('核心')) {
+                    return "「微光植境」的核心宣言：我們是一個專注於綠意生活與智慧植物科技的永續美學品牌，透過將極簡科技與自然微氣候生態相結合，讓忙碌的都市人在日常生活空間中隨時感受自然的靜謐與心靈療癒。";
+                } else {
+                    return "感謝您的詢問！「微光植境」將智慧循環與極簡陶藝美學相結合，為您打造沉靜的生活空間。歡迎至官網「永續選品」區探索，或使用「生態缸訂製」搭配您的桌上綠洲！";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
